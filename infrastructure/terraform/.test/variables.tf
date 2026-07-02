@@ -1,15 +1,15 @@
 ## Variables for Hyper-V host
-variable "HOST_IP" {
+variable "host_ip" {
   type        = string
   description = "Hyper-V host IP"
 }
 
-variable "HOST_USERNAME" {
+variable "host_username" {
   type        = string
   description = "Hyper-V host username"
 }
 
-variable "HOST_PASSWORD" {
+variable "host_password" {
   type        = string
   description = "Hyper-V host password"
 }

@@ -1,0 +1,38 @@
+# Simple workflow to run tests on a self-hosted runner
+
+name: Deploy Test
+
+on:
+  workflow_dispatch:
+
+env:
+  TF_VAR_host_ip: ${{ vars.TF_VAR_HOST_IP }}
+  TF_VAR_host_username: ${{ secrets.TF_VAR_HOST_USERNAME }}
+  TF_VAR_host_password: ${{ secrets.TF_VAR_HOST_PASSWORD }}
+
+# Sets default to be the test directory for all run commands
+defaults:
+  run:
+    working-directory: ./infrastructure/terraform/.test
+
+jobs:
+  plan:
+    runs-on: [self-hosted]
+    environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Check Terraform version
+        run: terraform --version
+
+      - name: Terraform Init
+        run: terraform init
+      
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
+     

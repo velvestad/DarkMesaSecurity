@@ -10,13 +10,13 @@ terraform {
 }
 
 provider "hyperv" {
-  host     = var.HOST_IP
+  host     = var.host_ip
   port     = 5986
   https    = true
   insecure = true
 
-  user = var.HOST_USERNAME
-  password = var.HOST_PASSWORD
+  user = var.host_username
+  password = var.host_password
 }
 
 resource "hyperv_vhd" "Ubuntu-core-disk3" {
