@@ -25,17 +25,39 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Check Terraform version
         run: terraform --version
 
-      - name: Terraform Init
+      - name: Init
         run: terraform init
       
-      - name: Terraform Validate
+      - name: Validate
         run: terraform validate
 
-      - name: Terraform Plan
-        run: terraform plan
-     
+      - name: Plan
+        run: terraform plan --out=tfplan
+
+      - name: Upload plan
+        uses: actions/upload-artifact@v7
+        with:
+          name: tfplan
+          path: infrastructure/terraform/.test/tfplan
+  apply: 
+    runs-on: [self-hosted]
+    needs: plan
+    environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      
+      - name: Download plan
+        uses: actions/download-artifact@v8
+        with:
+          name: tfplan
+          path: infrastructure/terraform/.test
+
+      - name: Terraform Apply
+        run: terraform apply tfplan
