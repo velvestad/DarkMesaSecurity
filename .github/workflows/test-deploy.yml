@@ -9,9 +9,9 @@ on:
       - dev
 
 env:
-  TF_VAR_host_ip: ${{ vars.TF_VAR_HOST_IP }}
-  TF_VAR_host_username: ${{ secrets.TF_VAR_HOST_USERNAME }}
-  TF_VAR_host_password: ${{ secrets.TF_VAR_HOST_PASSWORD }}
+  TF_VAR_host_ip: ${{ vars.HOST_IP }}
+  TF_VAR_host_username: ${{ secrets.HOST_USERNAME }}
+  TF_VAR_host_password: ${{ secrets.HOST_PASSWORD }}
 
 # Sets default to be the test directory for all run commands
 defaults:
@@ -32,7 +32,7 @@ jobs:
 
       - name: Download state
         continue-on-error: true
-        run: scp ${{ vars.TF_VAR_HOST_USERNAME }}@${{ vars.TF_VAR_HOST_IP }}:"C:\tfstate\terraform.tfstate" terraform.tfstate  
+        run: scp ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:\tfstate\terraform.tfstate" terraform.tfstate  
 
       - name: Init
         run: terraform init
@@ -65,7 +65,7 @@ jobs:
 
       - name: Download state
         continue-on-error: true
-        run: scp ${{ vars.TF_VAR_HOST_USERNAME }}@${{ vars.TF_VAR_HOST_IP }}:"C:\tfstate\terraform.tfstate" terraform.tfstate  
+        run: scp ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:\tfstate\terraform.tfstate" terraform.tfstate  
 
       - name: Init
         run: terraform init
@@ -74,4 +74,4 @@ jobs:
         run: terraform apply tfplan
 
       - name: Backup Terraform state
-        run: scp terraform.tfstate ${{ vars.TF_VAR_HOST_USERNAME }}@${{ vars.TF_VAR_HOST_IP }}:"C:\tfstate\terraform.tfstate"
+        run: scp terraform.tfstate ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:\tfstate\terraform.tfstate"
