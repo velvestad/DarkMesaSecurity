@@ -1,4 +1,4 @@
-![image](images\DMS-sites.png)
+![image](images/DMS-sites.png)
 # Introduction
 In this exercise you will setup a corporate network and datacenter for an imaginary company called Dark Mesa Security. You will install and configure the following functions for Dark Mesa Security:
 
@@ -20,29 +20,29 @@ As part of its expansion into advanced security research, Dark Mesa Security acq
 
 Together, Dark Mesa Security and Arctic Sentinel Labs combine operational expertise with forward-looking research to stay ahead of an increasingly complex threat landscape.
 
-![image](images\DMS-ASL.png)
+![image](images/DMS-ASL.png)
 
 ***
 
 # Table of Content
-- [Introduction](#Introduction)
-- [Synopsis](#Synopsis)
-- [Table of Content](#Table-of-Content)
-- [Assignments](#Assignments)
-- [Outcomes](Outcomes)
-- [Wide Area Network Topology](#Wide-Area-Network-Topology)
-- [Network Topology](#Network-Topology)
-- [Technical Requirements](#Technical-Requirements)
-- [STO-DC Server Roles](#STO-DC-Server-Roles)
-- [HEL-SRV2025-X Server Roles](#HEL-SRV2025-X-Server-Roles)
-- [HEL-UBUNTU-1 Server Roles](#HEL-UBUNTU-1-Server-Roles)
-- [Virtual Machine (VM) Configurations](#Virtual-Machine-(VM)-Configurations)
-- [Virtual Switch Configurations](#Virtual-Switch-Configurations)
-- [Organizational Units and Security Groups in Active Directory](#Organizational-Units-and-Security-Groups-in-Active-Directory)
-- [User Accounts](#User-Accounts)
-- [Group Policy Objects, GPOs](#Group-Policy-Objects,-GPOs)
-- [File Shares](#File-Shares)
-- [Reference Documentation](#Reference-Documentation)
+- [Introduction](#introduction)
+- [Synopsis](#synopsis)
+- [Table of Content](#table-of-content)
+- [Assignments](#assignments)
+- [Outcomes](#outcomes)
+- [Wide Area Network Topology](#wide-area-network-topology)
+- [Network Topology](#network-topology)
+- [Technical Requirements](#technical-requirements)
+- [STO-DC Server Roles](#sto-dc-server-roles)
+- [HEL-SRV2025-X Server Roles](#hel-srv2025-x-server-roles)
+- [HEL-UBUNTU-1 Server Roles](#hel-ubuntu-1-server-roles)
+- [Virtual Machine (VM) Configurations](#virtual-machine-vm-configurations)
+- [Virtual Switch Configurations](#virtual-switch-configurations)
+- [Organizational Units and Security Groups in Active Directory](#organizational-units-and-security-groups-in-active-directory)
+- [User Accounts](#user-accounts)
+- [Group Policy Objects, GPOs](#group-policy-objects-gpos)
+- [File Shares](#file-shares)
+- [Reference Documentation](#reference-documentation)
 
 ***
 
@@ -109,13 +109,13 @@ Hand in the following once you have completed all the assignments:
 
 # Wide Area Network Topology
 Dark Mesa Security is based in Stockholm and after the acquisition of Arctic Sentinel Labs they need a WAN link between the two headquarters. Each office has their own connection to the Internet. Your job is to setup the network between the two headquarters in a robust and secure way.
-![image](images\wan-topology.png)
+![image](images/wan-topology.png)
 
 ***
 
 # Network Topology
 Each site is running its own Active Directory/DNS/DHCP server. The Helsinki site has only one internal subnet. The Stockholm site is much larger and has several internal subnets for different functions. Your job is to setup the networks for each site according to the network map below. You may reuse the VM's created in the labs for the Server+ course for the Helsinki site, but pay attention that some machines will need to be modified to match the network map. For the Stockholm site you must create new VM's.
-![image](images\network-topology.png)
+![image](images/network-topology.png)
 
 ***
 
