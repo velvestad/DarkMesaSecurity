@@ -109,7 +109,7 @@ Hand in the following once you have completed all the assignments:
 
 # Wide Area Network Topology
 Dark Mesa Security is based in Stockholm and after the acquisition of Arctic Sentinel Labs they need a WAN link between the two headquarters. Each office has their own connection to the Internet. Your job is to setup the network between the two headquarters in a robust and secure way.
-![image](images/wan-topology.png)
+![image](images/WAN-topology.png)
 
 ***
 
