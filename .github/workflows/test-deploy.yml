@@ -4,6 +4,9 @@ name: Deploy Test
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - dev
 
 env:
   TF_VAR_host_ip: ${{ vars.TF_VAR_HOST_IP }}
