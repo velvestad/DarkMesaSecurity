@@ -18,9 +18,9 @@ $pw = Read-Host -Prompt "Enter password for certificate export" -AsSecureString
 #Create CA certificate
 $rootCaName = "DevRootCA"
 $rootCaPassword = ConvertTo-SecureString "$pw" -asplaintext -force 
-$rootCaCertificate = Get-ChildItem cert:\LocalMachine\Root |?{$_.subject -eq "CN=$rootCaName"}
+$rootCaCertificate = Get-ChildItem cert:\LocalMachine\Root | Where-Object{$_.subject -eq "CN=$rootCaName"}
 if (!$rootCaCertificate){
-  Get-ChildItem cert:\LocalMachine\My |?{$_.subject -eq "CN=$rootCaName"} | remove-item -force
+  Get-ChildItem cert:\LocalMachine\My | Where-Object{$_.subject -eq "CN=$rootCaName"} | remove-item -force
   if (Test-Path .\$rootCaName.cer) {
     remove-item .\$rootCaName.cer -force
   }
@@ -46,16 +46,16 @@ if (!$rootCaCertificate){
 
   Export-Certificate -Cert $rootCaCertificate -FilePath .\$rootCaName.cer -Verbose
   Export-PfxCertificate -Cert $rootCaCertificate -FilePath .\$rootCaName.pfx -Password $rootCaPassword -Verbose
-  Get-ChildItem cert:\LocalMachine\My |?{$_.subject -eq "CN=$rootCaName"} | remove-item -force
+  Get-ChildItem cert:\LocalMachine\My | Where-Object{$_.subject -eq "CN=$rootCaName"} | remove-item -force
   Import-PfxCertificate -FilePath .\$rootCaName.pfx -CertStoreLocation Cert:\LocalMachine\Root -password $rootCaPassword -Exportable -Verbose
   Import-PfxCertificate -FilePath .\$rootCaName.pfx -CertStoreLocation Cert:\LocalMachine\My -password $rootCaPassword -Exportable -Verbose
-  $rootCaCertificate = Get-ChildItem cert:\LocalMachine\My |?{$_.subject -eq "CN=$rootCaName"}
+  $rootCaCertificate = Get-ChildItem cert:\LocalMachine\My | Where-Object{$_.subject -eq "CN=$rootCaName"}
 }
 
 #Create host certificate using CA
 $hostName = [System.Net.Dns]::GetHostName()
 $hostPassword = ConvertTo-SecureString "$pw" -asplaintext -force
-$hostCertificate = Get-ChildItem cert:\LocalMachine\My |?{$_.subject -eq "CN=$hostName"}
+$hostCertificate = Get-ChildItem cert:\LocalMachine\My | Where-Object{$_.subject -eq "CN=$hostName"}
 if (!$hostCertificate){
   if (Test-Path .\$hostName.cer) {
     remove-item .\$hostName.cer -force
@@ -85,9 +85,9 @@ if (!$hostCertificate){
   $hostCertificate = New-SelfSignedCertificate @params
   Export-Certificate -Cert $hostCertificate -FilePath .\$hostName.cer -Verbose
   Export-PfxCertificate -Cert $hostCertificate -FilePath .\$hostName.pfx -Password $hostPassword -Verbose
-  Get-ChildItem cert:\LocalMachine\My |?{$_.subject -eq "CN=$hostName"} | remove-item -force
+  Get-ChildItem cert:\LocalMachine\My | Where-Object{$_.subject -eq "CN=$hostName"} | remove-item -force
   Import-PfxCertificate -FilePath .\$hostName.pfx -CertStoreLocation Cert:\LocalMachine\My -password $hostPassword -Exportable -Verbose
-  $hostCertificate = Get-ChildItem cert:\LocalMachine\My |?{$_.subject -eq "CN=$hostName"}
+  $hostCertificate = Get-ChildItem cert:\LocalMachine\My | Where-Object{$_.subject -eq "CN=$hostName"}
 }
 
 Get-ChildItem wsman:\localhost\Listener\ | Where-Object -Property Keys -eq 'Transport=HTTPS' | Remove-Item -Recurse
