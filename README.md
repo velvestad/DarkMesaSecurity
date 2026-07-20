@@ -1,42 +1,32 @@
 # Dark Mesa Security
 This project is a modified version of an infrastructure exercise given to students studying System Specialist at Utbilndning Nord. I intend to solve the exercise using IaC and DevOps principles. The original instructions of the exercise can be found in [this document](docs/OriginalExercise.md).
 
-***
+## Status and Progress
+[![Placeholder Main](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/deploy.yml/badge.svg)](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/deploy.yml) - [![Placeholder Dev](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/deploy.yml/badge.svg?branch=dev)](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/deploy.yml)
 
-## Progress
-### Main phases
 1. [ ] Research and preparation
 2. [ ] Building infrastructure
 3. [ ] Deployment automation fine tuning
-
-### Bonus phases
-- [ ] Convert and deploy to Azure
-- [ ] Configure monitoring
-
-***
 
 ## Goals
 With this project I intent to take what I have learned in my studies at Utbilding Nord and use it to solve this exercise. Most of the skills I need to use I have practiced individually in earlier labs, but by doing this project I get to combine them in one single project.  
 
 Ideally I would do this in Azure, but since I expect there to be a lot of trial and error, the few credits I have left would fly by quite fast. I've set the main goal to be to deploy the infrastructure on a local Windows Server running Hyper-V.
 
-***
-
 ## Project phases
 I've split the project into several phases with different goals. I do not expect to finish all these before I reach end of my studies in august, but I hope to finish phase 2 before I leave. 
 
-### Main Phases
-#### Research and preparation
+### Research and preparation
 Research and decide what tools to use, how to structure the project, and test deployment using the tools and GitOps methods.
 
-#### Building infrastructure
+### Building infrastructure
 Create templates for the infrastructure, images, and configuration, then deploy it to the host.
 
-#### Deployment automation fine tuning
+### Deployment automation fine tuning
 Make sure everything can be deployed to a freshly installed server using scripts and code from this repository.
 
-#### Bonus Goals
-Some goals for 
+### Bonus Goals
+Some goals for further learning.
 - [ ] Convert and deploy to Azure
 - [ ] Configure monitoring
 
