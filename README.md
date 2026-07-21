@@ -18,9 +18,13 @@ I've split the project into several phases with different goals. I do not expect
 
 ### Research and preparation
 Research and decide what tools to use, how to structure the project, and test deployment using the tools and GitOps methods.
+This phase is done after I can deploy different working infrastructure types using Actions:
+- External and Private virtual switch
+- pfSense router with config
+- VM running Windows installed using Packer, and configured using Ansible.
 
 ### Building infrastructure
-Create templates for the infrastructure, images, and configuration, then deploy it to the host.
+Create templates for the infrastructure, images, and configuration required for the exercise, then deploy it to the host using GitHub Actions.
 
 ### Deployment automation fine tuning
 Make sure everything can be deployed to a freshly installed server using scripts and code from this repository.
