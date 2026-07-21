@@ -1,1 +1,16 @@
-# Empty placeholder file.
+# Placeholder file.
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  plan:
+    runs-on: [self-hosted]
+
+    steps:
+        - name: Filler
+          run: return 1
