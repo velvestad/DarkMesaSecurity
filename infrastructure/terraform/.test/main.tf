@@ -1,5 +1,3 @@
-# Used to test the Hyper-V provider for Terraform.
-
 terraform {
   required_providers {
     hyperv = {
