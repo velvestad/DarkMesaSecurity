@@ -1,7 +1,7 @@
 resource "hyperv_network_switch" "default" {
   name                                    = ""
   notes                                   = ""
-  allow_management_os                     = true
+  allow_management_os                     = true # Must be false for private switches
   enable_embedded_teaming                 = false
   enable_iov                              = false
   enable_packet_direct                    = false
