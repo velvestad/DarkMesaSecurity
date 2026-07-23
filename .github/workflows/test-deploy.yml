@@ -74,6 +74,9 @@ jobs:
       - name: Init
         run: terraform init
 
+      - name: Import External Switches
+        run: terraform import module.external_networking.hyperv_network_switch.classroom_sw "CLASSROOM-SW"
+
       - name: Terraform Apply
         run: terraform apply tfplan
 
