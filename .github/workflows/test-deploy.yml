@@ -32,7 +32,7 @@ jobs:
 
       - name: Download state
         continue-on-error: true
-        run: scp ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:\tfstate\terraform.tfstate" ./terraform.tfstate  
+        run: scp ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/tfstate/terraform.tfstate" ./terraform.tfstate  
 
       - name: Init
         run: terraform init
@@ -69,7 +69,7 @@ jobs:
 
       - name: Download state
         continue-on-error: true
-        run: scp ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:\tfstate\terraform.tfstate" ./terraform.tfstate  
+        run: scp ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/tfstate/terraform.tfstate" ./terraform.tfstate  
 
       - name: Init
         run: terraform init
@@ -78,4 +78,4 @@ jobs:
         run: terraform apply tfplan
 
       - name: Backup Terraform state
-        run: scp ./terraform.tfstate ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:\tfstate\terraform.tfstate"
+        run: scp ./terraform.tfstate ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/tfstate/terraform.tfstate"
