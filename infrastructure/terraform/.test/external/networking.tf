@@ -4,7 +4,6 @@ resource "hyperv_network_switch" "classroom_sw" {
   notes                                   = "Virtual switch for external network connectivity (internet)"
   switch_type                             = "External"
   net_adapter_names                       = ["Ethernet"] # This name is not tested
-  id                                      = "CLASSROOM-SW"
   
   # Hyper-V default switch settings
   default_flow_minimum_bandwidth_absolute = 100000000
