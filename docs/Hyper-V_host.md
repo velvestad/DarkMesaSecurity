@@ -2,11 +2,6 @@
 OS:         Windows Server 2025 Datacenter
 Hostname:   Srv2025-Vegeir
 
-## Network Configuration
-IP:         10.16.0.2
-GW:         10.0.0.1
-DNS:        10.0.0.10
-
 ## Configuration
 Hyper-V Role installed
 Virtual external switch configured (CLASSROOM-SW)
