@@ -41,6 +41,7 @@ jobs:
         run: terraform validate
 
       - name: Import External Switches
+        continue-on-error: true
         run: terraform import module.external_networking.hyperv_network_switch.classroom_sw "CLASSROOM-SW"
 
       - name: Plan
