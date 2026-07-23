@@ -22,14 +22,14 @@ resource "hyperv_machine_instance" "pfsense_router" {
   # Connected to WAN/internet
   network_adaptors {
     name                                       = "NIC1"
-    switch_name                                = "CLASSROOM-SW"
+    switch_name                                = var.external.classroom_sw_name
     dynamic_mac_address                        = true
   }
 
   # Connected to site2site WAN
   network_adaptors {
     name                                       = "NIC2"
-    switch_name                                = hyperv_network_switch.wan_sw.name
+    switch_name                                = var.external.wan_sw_name
     dynamic_mac_address                        = true
   }
 
