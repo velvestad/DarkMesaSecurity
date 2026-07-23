@@ -50,13 +50,10 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: tfplan
-          path: terraform/plan
+          path: infrastructure/terraform/.test/tfplan
       
-      - name: Upload state
-        uses: actions/upload-artifact@v7
-        with:
-          name: terraform.tfstate
-          path: terraform/state
+      - name: Save Terraform state
+        run: cp ./terraform.tfstate ~/tf_state/terraform.tfstate
 
   apply: 
     runs-on: [self-hosted]
@@ -71,17 +68,14 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: tfplan
-          path: terraform/plan
+          path: infrastructure/terraform/.test
 
-      - name: Download state
-        uses: actions/download-artifact@v8
-        with:
-          name: terraform.tfstate
-          path: infrastructure/terraform/.test/terraform.tfstate
+      - name: Get Terraform state
+        run: cp ~/tf_state/terraform.tfstate ./terraform.tfstate
 
       - name: Init
         run: terraform init
-          
+
       - name: Terraform Apply
         run: terraform apply tfplan
 
