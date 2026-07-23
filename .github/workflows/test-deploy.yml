@@ -1,0 +1,84 @@
+# Simple workflow to run tests on a self-hosted runner
+
+name: Deploy Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+
+env:
+  TF_VAR_host_ip: ${{ vars.HOST_IP }}
+  TF_VAR_host_username: ${{ secrets.HOST_USERNAME }}
+  TF_VAR_host_password: ${{ secrets.HOST_PASSWORD }}
+
+# Sets default to be the test directory for all run commands
+defaults:
+  run:
+    working-directory: ./infrastructure/terraform/.test
+
+jobs:
+  plan:
+    runs-on: [self-hosted]
+    environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Check Terraform version
+        run: terraform --version
+
+      - name: Download state
+        continue-on-error: true
+        run: scp ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/tfstate/terraform.tfstate" ./terraform.tfstate  
+
+      - name: Init
+        run: terraform init
+      
+      - name: Validate
+        run: terraform validate
+
+      - name: Import External Switches
+        continue-on-error: true
+        run: terraform import module.external_networking.hyperv_network_switch.classroom_sw "CLASSROOM-SW"
+
+      - name: Plan
+        run: terraform plan --out=tfplan
+
+      - name: Upload plan
+        uses: actions/upload-artifact@v7
+        with:
+          name: tfplan
+          path: infrastructure/terraform/.test/tfplan
+      
+      - name: Save Terraform state
+        run: cp ./terraform.tfstate ~/tf_state/terraform.tfstate
+
+  apply: 
+    runs-on: [self-hosted]
+    needs: plan
+    environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      
+      - name: Download plan
+        uses: actions/download-artifact@v8
+        with:
+          name: tfplan
+          path: infrastructure/terraform/.test
+
+      - name: Get Terraform state
+        run: cp ~/tf_state/terraform.tfstate ./terraform.tfstate
+
+      - name: Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply tfplan
+
+      - name: Backup Terraform state
+        run: scp ./terraform.tfstate ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/tfstate/terraform.tfstate"
