@@ -51,6 +51,12 @@ jobs:
         with:
           name: tfplan
           path: infrastructure/terraform/.test/tfplan
+      
+      - name: Upload state
+        uses: actions/upload-artifact@v7
+        with:
+          name: terraform.tfstate
+          path: infrastructure/terraform/.test/terraform.tfstate
 
   apply: 
     runs-on: [self-hosted]
@@ -68,14 +74,13 @@ jobs:
           path: infrastructure/terraform/.test
 
       - name: Download state
-        continue-on-error: true
-        run: scp ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/tfstate/terraform.tfstate" ./terraform.tfstate  
+        uses: actions/download-artifact@v8
+        with:
+          name: terraform.tfstate
+          path: infrastructure/terraform/.test/terraform.tfstate
 
       - name: Init
         run: terraform init
-
-      - name: Import External Switches
-        run: terraform import module.external_networking.hyperv_network_switch.classroom_sw "CLASSROOM-SW"
 
       - name: Terraform Apply
         run: terraform apply tfplan
