@@ -2,7 +2,7 @@
 This project is a modified version of an infrastructure exercise given to students studying System Specialist at Utbilndning Nord. I intend to solve the exercise using IaC and DevOps principles. The original instructions of the exercise can be found in [this document](docs/OriginalExercise.md).
 
 ## Status and Progress
-[![Placeholder Main](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/deploy.yml/badge.svg)](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/deploy.yml) - [![Deploy Test](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml/badge.svg)](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml)
+[![Deploy Test](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml/badge.svg?branch=main)](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml) - [![Deploy Test](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml/badge.svg?branch=dev)](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml)
 
 1. [ ] Research and preparation
 2. [ ] Building infrastructure
