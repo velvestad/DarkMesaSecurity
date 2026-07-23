@@ -7,8 +7,7 @@ resource "hyperv_network_switch" "default" {
   enable_packet_direct                    = false
   minimum_bandwidth_mode                  = "None"
   switch_type                             = "Internal" # Edit as needed: "Private", "Internal", "External"
-  net_adapter_names                       = [] # Add names of NICs to bind to this switch
-                                               # Single NIC name inside the array does not work. Will test if using no [] works.
+  net_adapter_names                       = [] # Add names of NICs to bind to this switch. Single NIC name inside (["Ethernet"]) fails.  
   default_flow_minimum_bandwidth_absolute = 0
   default_flow_minimum_bandwidth_weight   = 0
   default_queue_vmmq_enabled              = false
