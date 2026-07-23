@@ -4,11 +4,6 @@ Hostname:   Runner
 
 Currently Hosted on Hyper-V host
 
-## Network Configuration
-IP:         10.16.0.3
-GW:         10.0.0.1
-DNS:        10.0.0.10
-
 ## Configuration
 - GitHub Actions agent
     - Configured as a deamon starting at boot.
