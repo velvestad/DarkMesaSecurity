@@ -1,7 +1,11 @@
-module "networking" {
+module "external_networking" {
+  source = "./external"
+}
+
+module "site-1_networking" {
   source = "./site-1/networking"
 }
 
-module "virtual_machines" {
+module "site-1_virtual_machines" {
   source = "./site-1/virtual_machines"
 }

@@ -40,6 +40,9 @@ jobs:
       - name: Validate
         run: terraform validate
 
+      - name: Import External Switches
+        run: terraform import hyperv_network_switch.classroom_sw "CLASSROOM-SW"
+
       - name: Plan
         run: terraform plan --out=tfplan
 

@@ -10,6 +10,7 @@ resource "hyperv_machine_instance" "tf-ubuntu-01" {
   memory_startup_bytes     = 2147483648   # 2GB
   processor_count          = 2
   dynamic_memory           = true
+  state                   = "Off"
 
   hard_disk_drives {
     path = hyperv_vhd.Ubuntu-core-disk3.path

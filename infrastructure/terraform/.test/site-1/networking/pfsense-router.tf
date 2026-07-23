@@ -19,18 +19,21 @@ resource "hyperv_machine_instance" "pfsense_router" {
     }
   }
 
+  # Connected to WAN/internet
   network_adaptors {
     name                                       = "NIC1"
-    switch_name                                = hyperv_network_switch.switch_1.name
+    switch_name                                = "CLASSROOM-SW"
     dynamic_mac_address                        = true
   }
 
+  # Connected to site2site WAN
   network_adaptors {
     name                                       = "NIC2"
-    switch_name                                = hyperv_network_switch.switch_1.name
+    switch_name                                = hyperv_network_switch.wan_sw.name
     dynamic_mac_address                        = true
   }
 
+  # Connected to LAN
   network_adaptors {
     name                                       = "NIC3"
     switch_name                                = hyperv_network_switch.switch_1.name
