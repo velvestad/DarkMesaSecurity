@@ -56,6 +56,7 @@ resource "hyperv_machine_instance" "pfsense_router" {
 
   network_adaptors {
     name                                       = "NIC4"
+    switch_name                                = hyperv_network_switch.switch_1.name
     dynamic_mac_address                        = true
   }
 
