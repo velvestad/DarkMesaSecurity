@@ -41,14 +41,14 @@ resource "hyperv_machine_instance" "pfsense_router" {
   }
 
   hard_disk_drives {
-    controller_type                 = "Scsi"
+    controller_type                 = "Ide"
     controller_number               = "0"
     controller_location             = "0"
     path                            = hyperv_vhd.pfsense-router-disk1.path
   }
 
   hard_disk_drives {
-    controller_type                 = "Scsi"
+    controller_type                 = "Ide"
     controller_number               = "0"
     controller_location             = "1"
     path                            = hyperv_vhd.pfsense-router-config-drive.path
