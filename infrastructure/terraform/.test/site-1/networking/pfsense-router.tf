@@ -60,7 +60,7 @@ resource "hyperv_vhd" "pfsense-router-disk1" {
   vhd_type = "Dynamic"
   size = 12884901888
 
-  source_disk = "c:\\Hyper-V\\vHDs\\golden\\pfsense-golden.vhdx"
+  source_disk = 2 ### This has to be set as variable if it works.
 }
 
 resource "hyperv_vhd" "pfsense-router-config-drive" {
