@@ -42,12 +42,12 @@ jobs:
       - name: Build pfSense config drive
         run: |
           ssh ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }} \
-          "cd C:/temp && powershell -Executionpolicy Bypass -File pfsense_config_vhdx_builder.ps1 -ConfigPath C:/temp/config.xml -DriveName pfsense-router-config-drive"
+          "cd C:/temp; powershell -Executionpolicy Bypass -File pfsense_config_vhdx_builder.ps1 -ConfigPath C:/temp/config.xml -DriveName pfsense-router-config-drive"
 
       - name: Clean up temporary files on host
         run: |
           ssh ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }} \
-          "Remove-Item -Path C:/temp/config.xml -Force && Remove-Item -Path C:/temp/pfsense_config_vhdx_builder.ps1 -Force"
+          "Remove-Item -Path C:/temp/config.xml -Force; Remove-Item -Path C:/temp/pfsense_config_vhdx_builder.ps1 -Force"
 
   plan:
     runs-on: [self-hosted]
