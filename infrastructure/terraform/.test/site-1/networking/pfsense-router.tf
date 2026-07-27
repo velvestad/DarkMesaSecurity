@@ -85,7 +85,10 @@ resource "hyperv_vhd" "pfsense-router-disk1" {
 resource "hyperv_vhd" "pfsense-router-config-drive" {
   path = "C:\\Hyper-V\\vHDs\\pfsense-router-config-drive.vhdx"
   source = "C:\\Hyper-V\\vHDs\\pfsense_config_drives\\pfsense-router-config-drive.vhdx"
-  vhd_type = "Fixed"
+  
+  # My script generates a fixed size VHDX, but terraform sees a dynamic. 
+  # Will look into this if loading the config drive fails.
+  #vhd_type = "Fixed"
 
   /*
   size = 67108864
