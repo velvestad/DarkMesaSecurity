@@ -37,7 +37,7 @@ jobs:
       - name: Copy config & build script to host
         run:  |
           scp ./site-1/networking/pfsense-router_config.xml ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/temp/config.xml"
-          scp ./site-1/networking/pfsense_config_vhdx_builder.ps1 ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/temp/pfsense_config_vhdx_builder.ps1"
+          scp ../../../scripts/pfsense_config_vhdx_builder.ps1 ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/temp/pfsense_config_vhdx_builder.ps1"
 
       - name: Build pfSense config drive
         run: |
