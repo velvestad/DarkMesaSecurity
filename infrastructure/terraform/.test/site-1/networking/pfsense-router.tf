@@ -18,6 +18,20 @@ resource "hyperv_machine_instance" "pfsense_router" {
       controller_location = "0"
     }
   }
+  
+  # Hyper-V defaults for CPU
+  vm_processor {
+    compatibility_for_migration_enabled               = false
+    compatibility_for_older_operating_systems_enabled = false
+    enable_host_resource_protection                   = false
+    expose_virtualization_extensions                  = false
+    hw_thread_count_per_core                          = 0
+    maximum                                           = 100
+    maximum_count_per_numa_node                       = 12
+    maximum_count_per_numa_socket                     = 1
+    relative_weight                                   = 100
+    reserve                                           = 0
+  }
 
   # Connected to WAN/internet
   network_adaptors {
@@ -37,6 +51,11 @@ resource "hyperv_machine_instance" "pfsense_router" {
   network_adaptors {
     name                                       = "NIC3"
     switch_name                                = hyperv_network_switch.switch_1.name
+    dynamic_mac_address                        = true
+  }
+
+  network_adaptors {
+    name                                       = "NIC4"
     dynamic_mac_address                        = true
   }
 
@@ -66,8 +85,9 @@ resource "hyperv_vhd" "pfsense-router-disk1" {
 resource "hyperv_vhd" "pfsense-router-config-drive" {
   path = "C:\\Hyper-V\\vHDs\\pfsense-router-config-drive.vhdx"
   source = "C:\\Hyper-V\\vHDs\\pfsense_config_drives\\pfsense-router-config-drive.vhdx"
-  /*
   vhd_type = "Fixed"
+
+  /*
   size = 67108864
   block_size           = 0
   logical_sector_size  = 512
