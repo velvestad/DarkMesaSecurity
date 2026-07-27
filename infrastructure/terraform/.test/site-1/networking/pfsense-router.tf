@@ -57,17 +57,20 @@ resource "hyperv_machine_instance" "pfsense_router" {
 
 resource "hyperv_vhd" "pfsense-router-disk1" {
   path = "C:\\Hyper-V\\vHDs\\pfsense-router-disk1.vhdx"
-  vhd_type = "Dynamic"
-  size = 12884901888
+  #vhd_type = "Dynamic"
+  #size = 12884901888
 
-  source_disk = 2 ### This has to be set as variable if it works.
+  source = "C:\\Hyper-V\\vHDs\\golden\\pfsensegolden.vhdx"
 }
 
 resource "hyperv_vhd" "pfsense-router-config-drive" {
   path = "C:\\Hyper-V\\vHDs\\pfsense_config_drives\\pfsense-router-config-drive.vhdx"
+  source = "C:\\Hyper-V\\vHDs\\pfsense_config_drives\\pfsense-router-config-drive.vhdx"
+  /*
   vhd_type = "Fixed"
   size = 67108864
   block_size           = 0
   logical_sector_size  = 512
   physical_sector_size = 4096
+  */
 }
