@@ -20,6 +20,35 @@ defaults:
     working-directory: ./infrastructure/terraform/.test
 
 jobs:
+  build-pfsense-config-drives:
+    runs-on: [self-hosted]
+    environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Add secrets to config file
+        run: |
+          sed -i "s/__BCRYPT_HASH__/${{ secrets.PFSENSE_BCRYPT_HASH }}/g" ./site-1/networking/pfsense-router_config.xml
+          sed -i "s/__CRT__/${{ secrets.PFSENSE_CRT }}/g" ./site-1/networking/pfsense-router_config.xml
+          sed -i "s/__PRV__/${{ secrets.PFSENSE_PRV }}/g" ./site-1/networking/pfsense-router_config.xml
+
+      - name: Copy config & build script to host
+        run:  |
+          scp ./site-1/networking/pfsense-router_config.xml ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/temp/config.xml"
+          scp ./site-1/networking/pfsense_config_vhdx_builder.ps1 ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/temp/pfsense_config_vhdx_builder.ps1"
+
+      - name: Build pfSense config drive
+        run: |
+          ssh ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }} \
+          "cd C:/temp && powershell -Executionpolicy Bypass -File pfsense_config_vhdx_builder.ps1 -ConfigPath C:/temp/config.xml -DriveName pfsense-router-config-drive"
+
+      - name: Clean up temporary files on host
+        run: |
+          ssh ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }} \
+          "Remove-Item -Path C:/temp/config.xml -Force && Remove-Item -Path C:/temp/pfsense_config_vhdx_builder.ps1 -Force"
+
   plan:
     runs-on: [self-hosted]
     environment: dev
@@ -45,6 +74,10 @@ jobs:
         continue-on-error: true
         run: terraform import module.external_networking.hyperv_network_switch.classroom_sw "CLASSROOM-SW"
 
+      - name: Import pfSense config drives
+        continue-on-error: true
+        run: terraform import module.external_networking.hyperv_virtual_disk.pfsense_config_drive "C:/Hyper-V/vHDs/pfsense_config_drives/pfsense-router-config-drive.vhdx"
+      
       - name: Plan
         run: terraform plan --out=tfplan
 

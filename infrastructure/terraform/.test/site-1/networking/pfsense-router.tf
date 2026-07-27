@@ -53,3 +53,12 @@ resource "hyperv_vhd" "pfsense-router-disk1" {
   vhd_type = "Dynamic"
   size = 12884901888
 }
+
+resource "hyperv_vhd" "pfsense-router-config-drive" {
+  path = "C:\\Hyper-V\\vHDs\\pfsense-config-drives\\pfsense-router-config-drive.vhdx"
+  vhd_type = "Fixed"
+  size = 67108864
+  block_size           = 0
+  logical_sector_size  = 512
+  physical_sector_size = 4096
+}
