@@ -51,6 +51,7 @@ jobs:
 
   plan:
     runs-on: [self-hosted]
+    needs: build-pfsense-config-drives
     environment: dev
 
     steps:
