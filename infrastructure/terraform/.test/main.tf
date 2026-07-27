@@ -7,6 +7,6 @@ module "site-1_networking" {
   external = module.external_networking.external
 }
 
-module "site-1_virtual_machines" {
-  source = "./site-1/virtual_machines"
-}
+#module "site-1_virtual_machines" {
+#  source = "./site-1/virtual_machines"
+#}
