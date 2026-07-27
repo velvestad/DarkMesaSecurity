@@ -46,6 +46,13 @@ resource "hyperv_machine_instance" "pfsense_router" {
     controller_location             = "0"
     path                            = hyperv_vhd.pfsense-router-disk1.path
   }
+
+  hard_disk_drives {
+    controller_type                 = "Scsi"
+    controller_number               = "0"
+    controller_location             = "1"
+    path                            = hyperv_vhd.pfsense-router-config-drive.path
+  }
 }
 
 resource "hyperv_vhd" "pfsense-router-disk1" {
@@ -55,7 +62,7 @@ resource "hyperv_vhd" "pfsense-router-disk1" {
 }
 
 resource "hyperv_vhd" "pfsense-router-config-drive" {
-  path = "C:\\Hyper-V\\vHDs\\pfsense-config-drives\\pfsense-router-config-drive.vhdx"
+  path = "C:\\Hyper-V\\vHDs\\pfsense_config_drives\\pfsense-router-config-drive.vhdx"
   vhd_type = "Fixed"
   size = 67108864
   block_size           = 0
