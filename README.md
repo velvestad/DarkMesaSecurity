@@ -2,14 +2,15 @@
 This project is a modified version of an infrastructure exercise given to students studying System Specialist at Utbilndning Nord. I intend to solve the exercise using IaC and DevOps principles. The original instructions of the exercise can be found in [this document](docs/OriginalExercise.md).
 
 ## Status and Progress
-[![Deploy Test](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml/badge.svg?branch=main)](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml) - [![Deploy Test](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml/badge.svg?branch=dev)](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml)
+[![Deploy Test](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml/badge.svg?branch=main)](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml)
+[![Deploy Test](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml/badge.svg?branch=dev)](https://github.com/velvestad/DarkMesaSecurity/actions/workflows/test-deploy.yml)
 
 1. [ ] Research and preparation
 2. [ ] Building infrastructure
 3. [ ] Deployment automation fine tuning
 
 ## Goals
-With this project I intent to take what I have learned in my studies at Utbilding Nord and use it to solve this exercise. Most of the skills I need to use I have practiced individually in earlier labs, but by doing this project I get to combine them in one single project.  
+With this project I intend to take what I have learned in my studies at Utbilding Nord and use it to solve this exercise. Most of the skills I need to use I have practiced individually in earlier labs, but by doing this project I get to combine them in one single project.  
 
 Ideally I would do this in Azure, but since I expect there to be a lot of trial and error, the few credits I have left would fly by quite fast. I've set the main goal to be to deploy the infrastructure on a local Windows Server running Hyper-V.
 

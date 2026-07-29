@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+
+  <settings pass="windowsPE">
+    <component name="Microsoft-Windows-Setup"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral"
+               versionScope="nonSxS">
+
+      <DiskConfiguration>
+        <Disk wcm:action="add">
+          <DiskID>0</DiskID>
+          <WillWipeDisk>true</WillWipeDisk>
+
+          <CreatePartitions>
+            <CreatePartition wcm:action="add">
+              <Order>1</Order>
+              <Type>Primary</Type>
+              <Extend>true</Extend>
+            </CreatePartition>
+          </CreatePartitions>
+
+          <ModifyPartitions>
+            <ModifyPartition wcm:action="add">
+              <Order>1</Order>
+              <PartitionID>1</PartitionID>
+              <Format>NTFS</Format>
+              <Label>System</Label>
+              <Letter>C</Letter>
+            </ModifyPartition>
+          </ModifyPartitions>
+        </Disk>
+      </DiskConfiguration>
+
+      <ImageInstall>
+        <OSImage>
+          <InstallTo>
+            <DiskID>0</DiskID>
+            <PartitionID>1</PartitionID>
+          </InstallTo>
+          <InstallToAvailablePartition>false</InstallToAvailablePartition>
+        </OSImage>
+      </ImageInstall>
+
+      <UserData>
+        <AcceptEula>true</AcceptEula>
+      </UserData>
+
+    </component>
+  </settings>
+
+  <settings pass="oobeSystem">
+
+    <component name="Microsoft-Windows-Shell-Setup"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral"
+               versionScope="nonSxS">
+
+      <TimeZone>W. Europe Standard Time</TimeZone>
+
+      <AutoLogon>
+        <Username>packer</Username>
+        <Enabled>true</Enabled>
+        <LogonCount>5</LogonCount>
+
+        <Password>
+          <Value>PackerPassword123!</Value>
+          <PlainText>true</PlainText>
+        </Password>
+      </AutoLogon>
+
+      <UserAccounts>
+        <LocalAccounts>
+
+          <LocalAccount wcm:action="add">
+            <Name>packer</Name>
+            <Group>Administrators</Group>
+
+            <Password>
+              <Value>PackerPassword123!</Value>
+              <PlainText>true</PlainText>
+            </Password>
+
+          </LocalAccount>
+
+        </LocalAccounts>
+      </UserAccounts>
+
+      <FirstLogonCommands>
+
+        <SynchronousCommand wcm:action="add">
+          <Order>1</Order>
+          <Description>Enable WinRM</Description>
+          <CommandLine>
+            powershell.exe -ExecutionPolicy Bypass -Command "winrm quickconfig -q; Enable-PSRemoting -Force; Set-Item WSMan:\localhost\Service\Auth\Basic -Value $true; Set-Item WSMan:\localhost\Service\AllowUnencrypted -Value $true; Restart-Service WinRM"
+          </CommandLine>
+        </SynchronousCommand>
+
+      </FirstLogonCommands>
+
+    </component>
+
+  </settings>
+
+</unattend>

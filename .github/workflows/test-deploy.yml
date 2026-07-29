@@ -1,4 +1,4 @@
-# Simple workflow to run tests on a self-hosted runner
+# Workflow to deploy the test environment using Terraform.
 
 name: Deploy Test
 
@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - main
-      - dev
+      #- dev
 
 env:
   TF_VAR_host_ip: ${{ vars.HOST_IP }}

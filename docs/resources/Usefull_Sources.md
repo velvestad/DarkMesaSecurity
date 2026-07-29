@@ -9,3 +9,6 @@ This might be irrelevant.. Has to be tested with a fresh Runner.
 
 ## Packer and Hyper-V
 [Hyper-V Builder | Integrations | Packer | HashiCorp Developer](https://developer.hashicorp.com/packer/integrations/hashicorp/hyperv/latest/components/builder/iso)
+
+## Building Windows Image using packer
+[Building Windows images on Hyper-V - Michael Waterman](https://michaelwaterman.nl/2026/04/29/building-windows-images-with-packer-on-hyper-v/)
