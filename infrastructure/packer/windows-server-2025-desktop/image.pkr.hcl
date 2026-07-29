@@ -27,7 +27,7 @@ source "hyperv-iso" "windows_server_2025_desktop" {
   shutdown_timeout = "30m"
   boot_wait = "10s"
 
-cd_files = ["./unattend.xml"]
+cd_files = ["C:\\packer\\work\\unattend.xml"]
 cd_label = "cidata"
 
   output_directory = "packer_output"
