@@ -1,0 +1,45 @@
+# Workflow to test packer 
+
+name: Packer Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - dev
+
+defaults:
+  run:
+    working-directory: ./infrastructure/packer/windows-server-2025-desktop
+
+jobs:
+  build-windows-server-2025-desktop-image:
+    runs-on: [self-hosted]
+    environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Transfer needed files to host
+        run: |
+          scp -r ./* ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/packer/work"
+          scp -r ../common ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }}:"C:/packer/work"
+      
+      - name: Initialize Packer
+        run: ssh ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }} \
+          "C:\\packer\\packer.exe init C:\\packer\\work"
+
+      - name: Validate Packer Configuration
+        run: ssh ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }} \
+          "C:\\packer\\packer.exe validate C:\\packer\\work"
+
+      - name: Build Windows Server 2025 Desktop Image
+        run: ssh ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }} \
+          "C:\\packer\\packer.exe build C:\\packer\\work"
+
+      - name: Clean up temporary files on host
+        if: always()
+        run: ssh ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }} \
+          "powershell -Executionpolicy Bypass -Command Remove-Item -Path C:\\packer\\work\\* -Recurse -Force"
