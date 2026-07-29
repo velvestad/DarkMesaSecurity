@@ -4,6 +4,10 @@ name: Packer Test
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - dev
 
 defaults:
   run:
