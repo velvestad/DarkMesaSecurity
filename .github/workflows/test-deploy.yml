@@ -22,7 +22,8 @@ defaults:
 jobs:
   build-pfsense-config-drives:
     runs-on: [self-hosted]
-    environment: dev
+    environment:
+      name: ${{ github.ref_name }}
 
     steps:
       - name: Checkout
@@ -52,7 +53,8 @@ jobs:
   plan:
     runs-on: [self-hosted]
     needs: build-pfsense-config-drives
-    environment: dev
+    environment:
+      name: ${{ github.ref_name }}
 
     steps:
       - name: Checkout
@@ -94,7 +96,8 @@ jobs:
   apply: 
     runs-on: [self-hosted]
     needs: plan
-    environment: dev
+    environment: 
+      name: ${{ github.ref_name }}
 
     steps:
       - name: Checkout
