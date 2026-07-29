@@ -40,5 +40,6 @@ jobs:
           "C:\\packer\\packer.exe build C:\\packer\\work"
 
       - name: Clean up temporary files on host
+        if: always()
         run: ssh ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }} \
           "powershell -Executionpolicy Bypass -Command Remove-Item -Path C:\\packer\\work\\* -Recurse -Force"

@@ -33,10 +33,6 @@ cd_label = "cidata"
   output_directory = "packer_output"
 
   disk_size = "40960"
-
-  network_adapters {
-    switch_name = "CLASSROOM-SW"
-  }
 }
 
 build {
