@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <!-- Removal of this is not required, but keeping it for the time being.
     <servicing>
         <package action="remove">
             <assemblyIdentity name="Microsoft-Windows-InternetExplorer-Optional-Package" version="11.0.26100.6899" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
             <selection name="Internet-Explorer-Optional-amd64" state="false" />
         </package>
     </servicing>
+    -->
     <!-- 1. windowsPE: disk, image, taal, EULA, etc. -->
     <settings pass="windowsPE">
         <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
