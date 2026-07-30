@@ -58,7 +58,7 @@ source "hyperv-iso" "windows_server_2025_desktop" {
   # -------------------------------------------------------------------------
   # Bootable ISO
   # -------------------------------------------------------------------------
-  iso_url      = "C:\\ISOs\\ws2026.iso"
+  iso_url      = "C:\\ISOs\\ws2025.iso"
   iso_checksum = "7B052573BA7894C9924E3E87BA732CCD354D18CB75A883EFA9B900EA125BFD51"
   boot_wait    = "-1s"
   boot_command = ["<spacebar>"]
