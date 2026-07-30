@@ -38,7 +38,7 @@ jobs:
 
       - name: Build Windows Server 2025 Desktop Image
         run: ssh ${{ secrets.HOST_USERNAME }}@${{ vars.HOST_IP }} \
-          "C:\\packer\\packer.exe build C:\\packer\\work"
+          "C:\\packer\\packer.exe build -force C:\\packer\\work"
 
       - name: Clean up temporary files on host
         if: always()

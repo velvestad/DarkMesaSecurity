@@ -95,7 +95,7 @@ EOF
   # Output variables
   # -------------------------------------------------------------------------
   temp_path = "C:\\temp"
-  output_directory = "C:\\Hyper-V\\vHDs\\golden"
+  output_directory = "C:\\Hyper-V\\vHDs\\golden\\ws2025_standard_desktop"
 }
 
 
