@@ -95,23 +95,7 @@ EOF
   # Output variables
   # -------------------------------------------------------------------------
   temp_path = "C:\\temp"
-  output_directory = join(
-    "",
-    [
-      "C:\\Hyper-V\\vHDs\\golden",
-      join(
-        "-",
-        [
-          "template",
-          "windows",
-          "Standard",
-          "2025",
-          "Desktop Experience",
-          "0.1.0"
-        ]
-      )
-    ]
-  )
+  output_directory = "C:\\Hyper-V\\vHDs\\golden"
 }
 
 
