@@ -16,7 +16,8 @@ defaults:
 jobs:
   build-windows-server-2025-desktop-image:
     runs-on: [self-hosted]
-    environment: dev
+    environment:
+      name: ${{ github.ref_name }}
 
     steps:
       - name: Checkout

@@ -67,7 +67,7 @@ source "hyperv-iso" "windows_server_2025_desktop" {
   # Autounattend.xml
   # -------------------------------------------------------------------------
   cd_files = [
-    "./provisioning/pre-build/*"
+    "C:/packer/work/provisioning/pre-build/*"
   ]
   cd_label = "cidata"
 
