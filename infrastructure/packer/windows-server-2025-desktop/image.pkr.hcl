@@ -157,7 +157,7 @@ build {
   # Upload the Invoke-ImageFinalization.ps1 file
   # -------------------------------------------------------------------------
   provisioner "file" {
-    source      = "provisioning/build/Invoke-ImageFinalization.ps1"
+    source      = "C:/packer/work/provisioning/build/Invoke-ImageFinalization.ps1"
     destination = "C:\\Windows\\temp\\Invoke-ImageFinalization.ps1"
   }
 
@@ -173,6 +173,6 @@ build {
   # Cleanup image
   # -------------------------------------------------------------------------
   provisioner "powershell" {
-    script = "provisioning/build/Cleanup-For-Image.ps1"
+    script = "C:/packer/work/provisioning/build/Cleanup-For-Image.ps1"
   }
 }
