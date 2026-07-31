@@ -115,6 +115,9 @@ build {
       filters = [
         "exclude:$_.Title -like '*Driver*'",
         "exclude:$_.Title -like '*Preview*'",
+        # "KB5007651 cannot be installed due to some indeterminate bug"
+        # Installing this update seems to require user input/logged in. Excluding it.
+        "exclude:$_.Title -like '*KB5007651*'",
         "include:$true",
       ]
       update_limit = 50
